@@ -44,17 +44,12 @@ void solve(ll test_case)
     ll n , m , a, b; 
     cin >> n >> m >> a >> b; 
     
+   int op1 = n * a; // all single tickets 
+   int op2 = (n / m) * b + (n % m) * a; // floor pack + singles 
+   int op3 = ((n + m -1) / m) * b; // buying whole pack (overbuying)
+   int minCost = min({op1, op2, op3}); 
 
-    ll cost1 = n * a; 
-
-
-    ll full = n / m;
-    ll rem = n % m;  
-
-    ll cost2 = full * b + min(b, rem * a); // assuming b <= m * a 
-    // or cost2 = full * min(b, m * a) + min(b, rem * a), if b >= m * a  
-
-    cout << min(cost1, cost2); 
+   cout << minCost << "\n"; 
 }
 
 int main()
